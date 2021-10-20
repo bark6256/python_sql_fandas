@@ -11,7 +11,12 @@
 # session 객체 만들어서 orm 사용하는 법 (파이썬 클래스로 질의)
 # https://docs.sqlalchemy.org/en/14/orm/tutorial.html#creating-a-session
 
+# 이스케이프 문자 (\n)
+
+import numpy as np
+import pandas as pd
 from pandas import Series, DataFrame
+from pandas.io import sql
 import sqlalchemy as db
 
 from data.fish_api import getFishData
@@ -32,6 +37,10 @@ def insert():
     fishs.to_sql("fish",engine,index=False, if_exists="replace")
 
 def select():
-    pass
+    df = pd.read_sql(con=engine, sql="select * from fish")
+    print(df)
 
-insert()
+
+
+#insert()
+select()
